@@ -1,6 +1,6 @@
 <div class="col-md-12">
   <div class="pull-right">
-    <%= link_to("创建团队"), new_team_path, class: "btn btn-defult" %><br>
+    <%= link_to("创建团队", new_team_path, class: "btn btn-defult") %><br>
   </div>
   <table class="table table-hover">
     <thead>
@@ -20,6 +20,7 @@
             <%= link_to("删除", team_path(team), method: :delete) %>
           </td>
         </tr>
+      <% end %>  
     </tbody>
-  </table>  
+  </table>
 </div>
