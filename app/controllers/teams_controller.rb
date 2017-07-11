@@ -1,4 +1,6 @@
 class TeamsController < ApplicationController
+  before_action :find_team, :only => [:show, :edit, :update, :destroy]
+
   def index
     @teams = Team.all
   end
@@ -18,15 +20,12 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team = Team.find(params[:id])
   end
 
   def edit
-    @team = Team.find(params[:id])
   end
 
   def update
-    @team = Team.find(params[:id])
     if @team.update(team_params)
       redirect_to teams_path
     else
@@ -35,7 +34,6 @@ class TeamsController < ApplicationController
   end
 
   def destroy
-    @team = Team.find(params[:id])
     @team.destroy
     redirect_to teams_path
   end
@@ -43,6 +41,10 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name, user_id)
+    params.require(:team).permit(:name, :user_id)
+  end
+
+  def find_team
+    @team = Team.find(params[:id])
   end
 end
